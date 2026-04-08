@@ -382,6 +382,31 @@
             .hero p { font-size: 1.1rem; }
             .mockup-wrapper { height: 300px; }
         }
+
+        /* ==========================================
+           7. RODAPÉ
+           ========================================== */
+        .footer-premium {
+            text-align: center;
+            padding: 30px 20px;
+            border-top: 1px solid var(--glass-border);
+            background: rgba(10, 11, 16, 0.8);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            color: var(--texto-secundario);
+            font-size: 1rem;
+            position: relative;
+            z-index: 10;
+        }
+
+        .footer-premium p {
+            margin: 0;
+            letter-spacing: 0.5px;
+        }
+        
+        .footer-nome {
+            font-weight: 600;
+        }
     </style>
 </head>
 <body>
@@ -532,6 +557,12 @@
             <button class="btn-glow" style="font-size: 1.5rem; padding: 20px 60px;">QUERO TRANSFORMAR MINHA EMPRESA</button>
         </div>
     </section>
+
+    <footer class="footer-premium">
+        <div class="reveal">
+            <p>Desenvolvido por <span class="text-gradient footer-nome">Luiz Henrique Lamim</span></p>
+        </div>
+    </footer>
 
     <script>
         // 1. Scroll Reveal Animation (Intersection Observer)
