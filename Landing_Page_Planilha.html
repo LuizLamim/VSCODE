@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestão Empresarial Premium | A Planilha Definitiva</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <style>
+        /* ==========================================
+           1. VARIÁVEIS E CONFIGURAÇÕES GLOBAIS
+           ========================================== */
+        :root {
+            --bg-grafite: #0a0b10;
+            --azul-royal: #1d4ed8;
+            --roxo-neon: #a855f7;
+            --texto-principal: #ffffff;
+            --texto-secundario: #94a3b8;
+            --glass-bg: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --neon-glow: 0 0 20px rgba(168, 85, 247, 0.4);
+            --azul-glow: 0 0 20px rgba(29, 78, 216, 0.4);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Outfit', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-grafite);
+            color: var(--texto-principal);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* Background Dinâmico / Luzes e Shapes */
+        .bg-shapes {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -1;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .shape {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.5;
+            animation: float 10s infinite alternate ease-in-out;
+        }
+
+        .shape-1 {
+            width: 400px;
+            height: 400px;
+            background: var(--azul-royal);
+            top: -100px;
+            left: -100px;
+        }
+
+        .shape-2 {
+            width: 500px;
+            height: 500px;
+            background: var(--roxo-neon);
+            bottom: -200px;
+            right: -100px;
+            animation-delay: -5s;
+        }
+
+        /* ==========================================
+           2. CLASSES UTILITÁRIAS (GLASS & UI)
+           ========================================== */
+        .glass-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: 40px;
+            transition: all 0.4s ease;
+        }
+
+        .glass-card:hover {
+            border-color: rgba(168, 85, 247, 0.5);
+            transform: translateY(-5px);
+            box-shadow: var(--neon-glow);
+        }
+
+        .btn-glow {
+            background: linear-gradient(135deg, var(--azul-royal), var(--roxo-neon));
+            color: white;
+            padding: 16px 40px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            border: none;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            box-shadow: var(--neon-glow);
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-glow:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 30px rgba(168, 85, 247, 0.8);
+        }
+
+        .text-gradient {
+            background: linear-gradient(to right, #60a5fa, #c084fc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Container Limitador */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 100px 20px;
+        }
+
+        /* ==========================================
+           3. ANIMAÇÕES BASE (REVEAL SCROLL)
+           ========================================== */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .delay-1 { transition-delay: 0.1s; }
+        .delay-2 { transition-delay: 0.2s; }
+        .delay-3 { transition-delay: 0.3s; }
+
+        @keyframes float {
+            0% { transform: translateY(0) scale(1); }
+            100% { transform: translateY(-30px) scale(1.1); }
+        }
+
+        /* ==========================================
+           4. SEÇÕES ESPECÍFICAS
+           ========================================== */
+           
+        /* Seção 1: Hero */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            line-height: 1.1;
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            color: var(--texto-secundario);
+            max-width: 700px;
+            margin: 0 auto 40px auto;
+        }
+
+        .typewriter-container {
+            display: inline-block;
+            min-height: 1.2em;
+        }
+        
+        .cursor {
+            display: inline-block;
+            width: 3px;
+            background-color: var(--roxo-neon);
+            animation: blink 1s infinite;
+        }
+        @keyframes blink { 50% { opacity: 0; } }
+
+        /* Seção 2: Benefícios */
+        .grid-beneficios {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 60px;
+        }
+
+        .beneficio-icon {
+            font-size: 3rem;
+            color: var(--roxo-neon);
+            margin-bottom: 20px;
+            display: inline-block;
+        }
+
+        .glass-card:hover .beneficio-icon {
+            animation: float 2s infinite alternate ease-in-out;
+        }
+
+        /* Seção 3: Produto (Mockup) */
+        .produto-container {
+            text-align: center;
+        }
+
+        .mockup-wrapper {
+            position: relative;
+            margin: 60px auto 0;
+            max-width: 900px;
+            height: 500px;
+            background: linear-gradient(180deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0) 100%);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transform: perspective(1000px) rotateX(10deg);
+            transition: all 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.2);
+        }
+
+        .mockup-wrapper.active {
+            transform: perspective(1000px) rotateX(0deg);
+        }
+        
+        .mockup-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            padding: 40px;
+            width: 100%;
+            height: 100%;
+            opacity: 0.3;
+        }
+        
+        .mockup-item { background: var(--glass-bg); border-radius: 8px; }
+
+        /* Seção 4: Planos */
+        .grid-planos {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            align-items: center;
+            margin-top: 60px;
+        }
+
+        .plano-card {
+            text-align: center;
+            position: relative;
+        }
+
+        .plano-destaque {
+            transform: scale(1.05);
+            border-color: var(--roxo-neon);
+            box-shadow: var(--neon-glow);
+            background: rgba(168, 85, 247, 0.05);
+        }
+
+        .plano-destaque::before {
+            content: "Mais Escolhido";
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--roxo-neon);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        .plano-preco {
+            font-size: 3rem;
+            font-weight: 800;
+            margin: 20px 0;
+            color: white;
+        }
+
+        .plano-lista {
+            list-style: none;
+            text-align: left;
+            margin: 30px 0;
+        }
+
+        .plano-lista li {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--texto-secundario);
+        }
+
+        .plano-lista i { color: var(--azul-royal); }
+
+        /* Seção 5: Depoimentos (Carrossel Auto) */
+        .marquee-container {
+            width: 100%;
+            overflow: hidden;
+            padding: 40px 0;
+            white-space: nowrap;
+            position: relative;
+        }
+        
+        /* Gradient masks for smooth edges */
+        .marquee-container::before, .marquee-container::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            width: 150px;
+            height: 100%;
+            z-index: 2;
+        }
+        .marquee-container::before {
+            left: 0;
+            background: linear-gradient(to right, var(--bg-grafite), transparent);
+        }
+        .marquee-container::after {
+            right: 0;
+            background: linear-gradient(to left, var(--bg-grafite), transparent);
+        }
+
+        .marquee-content {
+            display: inline-block;
+            animation: scroll-left 30s linear infinite;
+        }
+
+        .depoimento-card {
+            display: inline-block;
+            width: 350px;
+            white-space: normal;
+            margin-right: 30px;
+            vertical-align: top;
+        }
+
+        .stars { color: #fbbf24; margin-bottom: 10px; }
+
+        @keyframes scroll-left {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* Seção 6: CTA Final */
+        .cta-final {
+            text-align: center;
+            padding: 150px 20px;
+            background: radial-gradient(circle at center, rgba(29, 78, 216, 0.2) 0%, var(--bg-grafite) 70%);
+        }
+
+        .cta-final h2 {
+            font-size: 3.5rem;
+            margin-bottom: 40px;
+        }
+
+        /* Responsividade */
+        @media (max-width: 992px) {
+            .grid-planos { grid-template-columns: 1fr; }
+            .plano-destaque { transform: scale(1); }
+            .hero h1 { font-size: 3rem; }
+        }
+        
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.2rem; }
+            .hero p { font-size: 1.1rem; }
+            .mockup-wrapper { height: 300px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="bg-shapes">
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+    </div>
+
+    <section class="hero">
+        <div class="reveal">
+            <h1>A Gestão da Sua Empresa <br>
+                <span class="text-gradient typewrite" data-period="2000" data-type='[ "Começa Aqui.", "Ficou Simples.", "No Próximo Nível." ]'></span><span class="cursor"></span>
+            </h1>
+            <p>A planilha empresarial mais completa, simples e inteligente que você já viu. Abandone a confusão e assuma o controle hoje.</p>
+            <a href="#planos" class="btn-glow">Acessar Sistema</a>
+        </div>
+    </section>
+
+    <section class="container" id="beneficios">
+        <div class="reveal text-center" style="text-align: center; margin-bottom: 40px;">
+            <h2 style="font-size: 2.5rem;">Por que escolher nosso sistema?</h2>
+        </div>
+        <div class="grid-beneficios">
+            <div class="glass-card reveal delay-1">
+                <i class="ph ph-chart-line-up beneficio-icon"></i>
+                <h3>Financeiro Automatizado</h3>
+                <p style="color: var(--texto-secundario); margin-top: 10px;">Controle de fluxo de caixa, DRE e conciliação bancária de forma visual e intuitiva.</p>
+            </div>
+            <div class="glass-card reveal delay-2">
+                <i class="ph ph-target beneficio-icon"></i>
+                <h3>Projeção de Metas</h3>
+                <p style="color: var(--texto-secundario); margin-top: 10px;">Preveja lucros e defina metas claras para o crescimento exponencial do seu negócio.</p>
+            </div>
+            <div class="glass-card reveal delay-3">
+                <i class="ph ph-desktop beneficio-icon"></i>
+                <h3>Dashboard Inteligente</h3>
+                <p style="color: var(--texto-secundario); margin-top: 10px;">Indicadores empresariais em tempo real, organizados em um painel executivo moderno.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="container produto-container" id="produto">
+        <div class="reveal">
+            <h2 style="font-size: 2.5rem; margin-bottom: 15px;">Planejamento nunca foi <span class="text-gradient">tão fácil</span></h2>
+            <p style="color: var(--texto-secundario); font-size: 1.2rem;">Visual profissional, dados claros, decisões rápidas.</p>
+        </div>
+        
+        <div class="mockup-wrapper reveal">
+            <div class="mockup-grid">
+                <div class="mockup-item" style="grid-column: span 1; grid-row: span 3;"></div>
+                <div class="mockup-item" style="grid-column: span 3;"></div>
+                <div class="mockup-item"></div>
+                <div class="mockup-item"></div>
+                <div class="mockup-item"></div>
+                <div class="mockup-item" style="grid-column: span 2; grid-row: span 2;"></div>
+                <div class="mockup-item" style="grid-row: span 2;"></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="container" id="planos">
+        <div class="reveal" style="text-align: center;">
+            <h2 style="font-size: 2.5rem;">Invista no seu crescimento</h2>
+            <p style="color: var(--texto-secundario); margin-top: 10px;">Escolha o plano ideal para a sua realidade atual.</p>
+        </div>
+
+        <div class="grid-planos">
+            <div class="glass-card plano-card reveal delay-1">
+                <h3>Essencial</h3>
+                <div class="plano-preco">R$ 97</div>
+                <p style="color: var(--texto-secundario);">Pagamento único</p>
+                <ul class="plano-lista">
+                    <li><i class="ph-fill ph-check-circle"></i> Controle de Caixa</li>
+                    <li><i class="ph-fill ph-check-circle"></i> Dashboard Básico</li>
+                    <li><i class="ph-fill ph-check-circle"></i> Suporte por e-mail</li>
+                </ul>
+                <button class="btn-glow" style="width: 100%; font-size: 0.9rem;">Começar Agora</button>
+            </div>
+
+            <div class="glass-card plano-card plano-destaque reveal delay-2">
+                <h3>Profissional</h3>
+                <div class="plano-preco">R$ 197</div>
+                <p style="color: var(--texto-secundario);">Pagamento único</p>
+                <ul class="plano-lista">
+                    <li><i class="ph-fill ph-check-circle"></i> Tudo do Essencial</li>
+                    <li><i class="ph-fill ph-check-circle"></i> Projeção Financeira</li>
+                    <li><i class="ph-fill ph-check-circle"></i> Gestão de Contratos</li>
+                    <li><i class="ph-fill ph-check-circle"></i> Suporte VIP WhatsApp</li>
+                </ul>
+                <button class="btn-glow" style="width: 100%; font-size: 0.9rem;">Escolha Popular</button>
+            </div>
+
+            <div class="glass-card plano-card reveal delay-3">
+                <h3>Empresa Plus</h3>
+                <div class="plano-preco">R$ 397</div>
+                <p style="color: var(--texto-secundario);">Pagamento único</p>
+                <ul class="plano-lista">
+                    <li><i class="ph-fill ph-check-circle"></i> Tudo do Profissional</li>
+                    <li><i class="ph-fill ph-check-circle"></i> Múltiplos Usuários</li>
+                    <li><i class="ph-fill ph-check-circle"></i> Mentoria de 1 Hora</li>
+                    <li><i class="ph-fill ph-check-circle"></i> Atualizações Vitalícias</li>
+                </ul>
+                <button class="btn-glow" style="width: 100%; font-size: 0.9rem;">Falar com Consultor</button>
+            </div>
+        </div>
+    </section>
+
+    <section id="depoimentos" style="padding-top: 60px;">
+        <div class="reveal" style="text-align: center; margin-bottom: 20px;">
+            <h2 style="font-size: 2.5rem;">Quem usa, recomenda.</h2>
+        </div>
+        
+        <div class="marquee-container reveal">
+            <div class="marquee-content">
+                <div class="glass-card depoimento-card">
+                    <div class="stars"><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i></div>
+                    <p>"Visual incrível! Desde que implementamos, cortamos os custos operacionais em 20% apenas visualizando os dados corretamente."</p>
+                    <h4 style="margin-top: 15px; color: var(--roxo-neon);">Carlos S., CEO</h4>
+                </div>
+                <div class="glass-card depoimento-card">
+                    <div class="stars"><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i></div>
+                    <p>"Eu odiava planilhas até conhecer essa. Parece um software de milhares de reais, mas roda leve e rápido."</p>
+                    <h4 style="margin-top: 15px; color: var(--roxo-neon);">Mariana L., Diretora</h4>
+                </div>
+                <div class="glass-card depoimento-card">
+                    <div class="stars"><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i></div>
+                    <p>"A função de projeção de lucros nos permitiu planejar a abertura da segunda filial com segurança. Recomendo de olhos fechados."</p>
+                    <h4 style="margin-top: 15px; color: var(--roxo-neon);">Roberto F., Empreendedor</h4>
+                </div>
+                <div class="glass-card depoimento-card">
+                    <div class="stars"><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i></div>
+                    <p>"Visual incrível! Desde que implementamos, cortamos os custos operacionais em 20% apenas visualizando os dados corretamente."</p>
+                    <h4 style="margin-top: 15px; color: var(--roxo-neon);">Carlos S., CEO</h4>
+                </div>
+                <div class="glass-card depoimento-card">
+                    <div class="stars"><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i></div>
+                    <p>"Eu odiava planilhas até conhecer essa. Parece um software de milhares de reais, mas roda leve e rápido."</p>
+                    <h4 style="margin-top: 15px; color: var(--roxo-neon);">Mariana L., Diretora</h4>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-final">
+        <div class="reveal">
+            <h2 class="text-gradient">Transforme sua gestão empresarial hoje mesmo.</h2>
+            <button class="btn-glow" style="font-size: 1.5rem; padding: 20px 60px;">QUERO TRANSFORMAR MINHA EMPRESA</button>
+        </div>
+    </section>
+
+    <script>
+        // 1. Scroll Reveal Animation (Intersection Observer)
+        const revealElements = document.querySelectorAll('.reveal');
+
+        const revealCallback = (entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    // Opcional: parar de observar após a animação rodar uma vez
+                    // observer.unobserve(entry.target); 
+                }
+            });
+        };
+
+        const revealOptions = {
+            threshold: 0.15, // Aciona quando 15% do elemento estiver visível
+            rootMargin: "0px 0px -50px 0px"
+        };
+
+        const revealObserver = new IntersectionObserver(revealCallback, revealOptions);
+
+        revealElements.forEach(el => revealObserver.observe(el));
+
+        // 2. Typing Effect Animation
+        class TypeWriter {
+            constructor(el, toRotate, period) {
+                this.toRotate = toRotate;
+                this.el = el;
+                this.loopNum = 0;
+                this.period = parseInt(period, 10) || 2000;
+                this.txt = '';
+                this.isDeleting = false;
+                this.tick();
+            }
+            tick() {
+                let i = this.loopNum % this.toRotate.length;
+                let fullTxt = this.toRotate[i];
+
+                if (this.isDeleting) {
+                    this.txt = fullTxt.substring(0, this.txt.length - 1);
+                } else {
+                    this.txt = fullTxt.substring(0, this.txt.length + 1);
+                }
+
+                this.el.innerHTML = this.txt;
+
+                let delta = 150 - Math.random() * 100; // Velocidade de digitação natural
+
+                if (this.isDeleting) { delta /= 2; } // Apaga mais rápido
+
+                if (!this.isDeleting && this.txt === fullTxt) {
+                    delta = this.period; // Pausa quando a palavra está completa
+                    this.isDeleting = true;
+                } else if (this.isDeleting && this.txt === '') {
+                    this.isDeleting = false;
+                    this.loopNum++;
+                    delta = 500; // Pausa antes de digitar a nova palavra
+                }
+
+                setTimeout(() => this.tick(), delta);
+            }
+        }
+
+        window.onload = function() {
+            let elements = document.getElementsByClassName('typewrite');
+            for (let i = 0; i < elements.length; i++) {
+                let toRotate = elements[i].getAttribute('data-type');
+                let period = elements[i].getAttribute('data-period');
+                if (toRotate) {
+                    new TypeWriter(elements[i], JSON.parse(toRotate), period);
+                }
+            }
+        };
+    </script>
+</body>
+</html>
