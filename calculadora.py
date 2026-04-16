@@ -4,3 +4,5 @@ def calculadora():
     print("2. Subtrair")
     print("3. Multiplicar")
     print("4. Dividir")
+
+    escolha = input("\nEscolha a operação (1/2/3/4): ")
