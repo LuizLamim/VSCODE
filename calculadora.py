@@ -28,3 +28,6 @@ def calculadora():
                 print("\nErro: Divisão por zero não é permitida.")
     else:
         print("\nEscolha inválida. Tente novamente.")
+
+if __name__ == "__main__":
+    calculadora()
