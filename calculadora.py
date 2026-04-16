@@ -14,3 +14,17 @@ def calculadora():
         except ValueError:
             print("Por favor, digite apenas números válidos.")
             return
+
+        if escolha == '1':
+            print(f"\nResultado: {num1} + {num2} = {num1 + num2}")
+        elif escolha == '2':
+            print(f"\nResultado: {num1} - {num2} = {num1 - num2}")
+        elif escolha == '3':
+            print(f"\nResultado: {num1} * {num2} = {num1 * num2}")
+        elif escolha == '4':
+            if num2 != 0:
+                print(f"\nResultado: {num1} / {num2} = {num1 / num2}")
+            else:
+                print("\nErro: Divisão por zero não é permitida.")
+    else:
+        print("\nEscolha inválida. Tente novamente.")
