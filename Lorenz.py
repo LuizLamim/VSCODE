@@ -42,3 +42,6 @@ ax.set_title("Atrator de Lorenz", fontsize=16)
 ax.set_xlabel("Eixo X")
 ax.set_ylabel("Eixo Y")
 ax.set_zlabel("Eixo Z")
+
+# Exibe o gráfico na tela
+plt.show()
