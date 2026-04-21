@@ -47,3 +47,6 @@ btn_calcular.pack(pady=15)
 # Label para exibir o resultado final
 label_resultado = tk.Label(root, text="Resultado: ", font=("Arial", 12, "bold"), fg="blue")
 label_resultado.pack()
+
+# 3. Loop principal para manter a janela aberta
+root.mainloop()
