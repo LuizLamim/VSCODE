@@ -16,3 +16,9 @@ def calcular_porcentagem():
     except ValueError:
         # Mostra um erro se o usuário digitar letras ou símbolos inválidos
         messagebox.showerror("Erro de Entrada", "Por favor, insira apenas números válidos.")
+
+# 1. Configuração da Janela Principal
+root = tk.Tk()
+root.title("Calculadora de Porcentagem")
+root.geometry("300x250")
+root.resizable(False, False) # Impede que a janela seja redimensionada
