@@ -22,3 +22,28 @@ root = tk.Tk()
 root.title("Calculadora de Porcentagem")
 root.geometry("300x250")
 root.resizable(False, False) # Impede que a janela seja redimensionada
+
+# 2. Criação dos Elementos (Widgets)
+# Título
+label_titulo = tk.Label(root, text="Descubra X% de um valor", font=("Arial", 12, "bold"))
+label_titulo.pack(pady=10)
+
+# Campo do Valor Total
+label_valor = tk.Label(root, text="Valor Total:")
+label_valor.pack()
+entry_valor = tk.Entry(root, justify="center")
+entry_valor.pack(pady=5)
+
+# Campo da Porcentagem
+label_porcentagem = tk.Label(root, text="Porcentagem (%):")
+label_porcentagem.pack()
+entry_porcentagem = tk.Entry(root, justify="center")
+entry_porcentagem.pack(pady=5)
+
+# Botão Calcular
+btn_calcular = tk.Button(root, text="Calcular", command=calcular_porcentagem, bg="#4CAF50", fg="white", font=("Arial", 10, "bold"))
+btn_calcular.pack(pady=15)
+
+# Label para exibir o resultado final
+label_resultado = tk.Label(root, text="Resultado: ", font=("Arial", 12, "bold"), fg="blue")
+label_resultado.pack()
