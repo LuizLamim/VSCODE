@@ -45,3 +45,5 @@ def calcular_triangulo():
     except ValueError:
         print("Por favor, insira apenas números válidos.")
 
+if __name__ == "__main__":
+    calcular_triangulo()
