@@ -42,3 +42,6 @@ def calcular_triangulo():
         else:
             print("Opção inválida!")
 
+    except ValueError:
+        print("Por favor, insira apenas números válidos.")
+
