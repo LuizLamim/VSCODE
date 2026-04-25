@@ -21,3 +21,9 @@ def calcular_ln():
         
     except ValueError:
         messagebox.showerror("Erro de Entrada", "Por favor, insira um número válido.")
+
+# Configuração da Janela Principal
+janela = tk.Tk()
+janela.title("Calculadora de Logaritmo Natural")
+janela.geometry("350x250")
+janela.configure(bg="#2c3e50") # Cor de fundo elegante
