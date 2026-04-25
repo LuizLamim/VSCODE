@@ -18,3 +18,10 @@ plt.ylabel('f(x)')
 
 # Adiciona uma grade para facilitar a visualização
 plt.grid(True, linestyle='--', alpha=0.7)
+
+# Destaca os eixos x=0 e y=0
+plt.axhline(0, color='black', linewidth=1)
+plt.axvline(0, color='black', linewidth=1)
+
+# Mostra a legenda
+plt.legend()
