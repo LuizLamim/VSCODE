@@ -25,3 +25,6 @@ plt.axvline(0, color='black', linewidth=1)
 
 # Mostra a legenda
 plt.legend()
+
+# Exibe o gráfico na tela
+plt.show()
