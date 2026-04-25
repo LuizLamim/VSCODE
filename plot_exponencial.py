@@ -6,3 +6,15 @@ x = np.linspace(-5, 5, 100)
 
 # Calcula a função exponencial e^x para cada valor de x
 y = np.exp(x)
+
+# Cria a figura e plota os dados
+plt.figure(figsize=(8, 5))
+plt.plot(x, y, label='y = e^x', color='blue', linewidth=2)
+
+# Adiciona título e rótulos aos eixos
+plt.title('Gráfico da Função Exponencial (e^x)')
+plt.xlabel('x')
+plt.ylabel('f(x)')
+
+# Adiciona uma grade para facilitar a visualização
+plt.grid(True, linestyle='--', alpha=0.7)
