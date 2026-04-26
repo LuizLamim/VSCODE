@@ -6,3 +6,4 @@ texto_invertido = texto_original[::-1]
 
 # Exibe o resultado
 print(f"\nTexto original: {texto_original}")
+print(f"Texto invertido: {texto_invertido}")
