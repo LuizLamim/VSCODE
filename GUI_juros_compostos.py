@@ -24,3 +24,7 @@ janela = tk.Tk()
 janela.title("Calculadora de Juros Compostos")
 janela.geometry("350x450")
 janela.configure(padx=20, pady=20)
+
+# Estilização Simples
+fonte_label = ("Arial", 10, "bold")
+fonte_entry = ("Arial", 10)
