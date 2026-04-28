@@ -18,3 +18,9 @@ def calcular_juros():
         
     except ValueError:
         messagebox.showerror("Erro de Entrada", "Por favor, insira apenas números válidos.")
+
+# Configuração da Janela Principal
+janela = tk.Tk()
+janela.title("Calculadora de Juros Compostos")
+janela.geometry("350x450")
+janela.configure(padx=20, pady=20)
